@@ -45,6 +45,7 @@ app.get('/upcoming-events', async (req, res) => {
 });
 
 
+// event details API
 app.get('/event/:id', async (req, res) => {
     const {id} = req.params;
     const result = await eventCollection.findOne({_id: new ObjectId(id)});
