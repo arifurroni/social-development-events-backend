@@ -26,12 +26,18 @@ export async function connectToMongoDB() {
 
 const mongoClient = await connectToMongoDB();
 
+const db = mongoClient.db("social-dev-events");
+const eventCollection = db.collection("event");
+
 
 app.post('/add-event', async (req, res) => {
     const data = req.body;
     
+    const result = await eventCollection.insertOne(data);
+
+    console.log(result);
     
-    res.send({msg: "API Working..."})
+    res.send(result);
 });
 
 
