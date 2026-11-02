@@ -24,11 +24,13 @@ export async function connectToMongoDB() {
   }
 }
 
-connectToMongoDB();
+const mongoClient = await connectToMongoDB();
 
 
 app.post('/add-event', async (req, res) => {
-    console.log("API Called!");
+    const data = req.body;
+    
+    
     res.send({msg: "API Working..."})
 });
 
