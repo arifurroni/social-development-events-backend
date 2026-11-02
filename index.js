@@ -32,17 +32,21 @@ const eventCollection = db.collection("event");
 
 app.post('/add-event', async (req, res) => {
     const data = req.body;
-    
     const result = await eventCollection.insertOne(data);
 
     console.log(result);
-    
+    res.send(result);
+});
+
+
+app.get('/upcoming-events', async (req, res) => {
+    const result = await eventCollection.find().toArray();
     res.send(result);
 });
 
 
 
-// http://localhost:8000/add-event
+// http://localhost:8000
 
 app.get("/", (req, res) => {
     res.send({msg: `Server is running successfully`});
