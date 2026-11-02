@@ -24,8 +24,14 @@ export async function connectToMongoDB() {
 connectToMongoDB();
 
 
+app.post('/add-event', async (req, res) => {
+    console.log("API Called!");
+    res.send({msg: "API Working..."})
+});
 
-// http://localhost:8000
+
+
+// http://localhost:8000/add-event
 
 app.get("/", (req, res) => {
     res.send({msg: `Server is running successfully`});
