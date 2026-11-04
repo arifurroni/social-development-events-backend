@@ -68,6 +68,28 @@ app.get('/upcoming-events', async (req, res) => {
     res.send(result);
 });
 
+app.get("/recent-upcoming-events", async (req, res) => {
+  try {
+    const today = new Date().toISOString().split("T")[0];
+
+    const result = await eventCollection
+      .find({
+        eventDate: { $gte: today },
+      })
+      .sort({ eventDate: 1 })
+      .limit(6)
+      .toArray();
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error("Recent upcoming events error:", error);
+
+    res.status(500).json({
+      message: "Failed to fetch recent upcoming events.",
+    });
+  }
+});
+
 
 // event details API
 app.get('/event/:id', verifyToken, async (req, res) => {
