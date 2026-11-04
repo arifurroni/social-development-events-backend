@@ -18,7 +18,7 @@ const client = new MongoClient(process.env.MONGODB_URI);
 export async function connectToMongoDB() {
   try {
     await client.connect();
-    console.log("You successfully connected to MongoDB!");
+    // console.log("You successfully connected to MongoDB!");
     return client;
   } catch (err) {
     console.dir(err);
@@ -33,7 +33,7 @@ const eventCollection = db.collection("event");
 
 const verifyToken = async (req, res, next) => {
     const authHeader = req.headers.authorization
-console.log(authHeader);
+// console.log(authHeader);
     if (!authHeader) {
         return res.status(401).send({msg: 'Unauthorized!'})
     }
