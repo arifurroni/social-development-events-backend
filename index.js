@@ -55,7 +55,7 @@ console.log(authHeader);
 };
 
 
-app.post('/add-event', async (req, res) => {
+app.post('/add-event', verifyToken, async (req, res) => {
     const data = req.body;
     const result = await eventCollection.insertOne(data);
     // console.log(result);
