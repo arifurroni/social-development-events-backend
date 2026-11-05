@@ -96,6 +96,18 @@ app.get('/event/:id', verifyToken, async (req, res) => {
     res.send(result);
 });
 
+// edit event API
+app.patch('/event/:id', verifyToken, async (req, res) => {
+  const {id} = req.params;
+  const updatedData = req.body;
+  const result = await eventCollection.updateOne(
+    {_id: new ObjectId(id)},
+    {$set: updatedData},
+  )
+
+  res.json(result)
+})
+
 
 // http://localhost:8000
 
