@@ -11,8 +11,6 @@ app.use(express.json());
 const PORT = 8000;
 
 
-
-
 const client = new MongoClient(process.env.MONGODB_URI);
 
 export async function connectToMongoDB() {
@@ -97,7 +95,6 @@ app.get('/event/:id', verifyToken, async (req, res) => {
     const result = await eventCollection.findOne({_id: new ObjectId(id)});
     res.send(result);
 });
-
 
 
 // http://localhost:8000
